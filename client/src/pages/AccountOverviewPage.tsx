@@ -22,16 +22,16 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
+// import {
+//   AlertDialog,
+//   AlertDialogAction,
+//   AlertDialogCancel,
+//   AlertDialogContent,
+//   AlertDialogDescription,
+//   AlertDialogFooter,
+//   AlertDialogHeader,
+//   AlertDialogTitle,
+// } from '@/components/ui/alert-dialog';
 import type { AccountWithTransactions } from '@/types/api/account.types';
 import { AccountAPI, TransactionAPI } from '@/api';
 import TransactionRecordCard from '@/components/TransactionRecordCard';
@@ -47,9 +47,9 @@ const AccountDetailsPage: React.FC = () => {
 
   const [isBalanceVisible, setIsBalanceVisible] = useState(true);
 
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  // const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isDeleting, setIsDeleting] = useState(false);
+  // const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     if (!id) {
@@ -85,9 +85,9 @@ const AccountDetailsPage: React.FC = () => {
     toast.error('Edit feature is coming soon!');
   };
 
-  const handleDelete = async () => {
-    toast.error('Delete feature is coming soon!');
-  };
+  // const handleDelete = async () => {
+  //   toast.error('Delete feature is coming soon!');
+  // };
 
   const formatDate = (date: Date | string) => {
     return new Intl.DateTimeFormat('en-IN', {
@@ -184,7 +184,7 @@ const AccountDetailsPage: React.FC = () => {
           <Button
             variant="outline"
             size="sm"
-            onClick={() => setIsDeleteDialogOpen(true)}
+            // onClick={() => setIsDeleteDialogOpen(true)}
           >
             <Trash2 className="mr-2 h-4 w-4" />
             Delete
@@ -358,7 +358,7 @@ const AccountDetailsPage: React.FC = () => {
       </Card>
 
       {/* Delete Confirmation Dialog */}
-      <AlertDialog
+      {/* <AlertDialog
         open={isDeleteDialogOpen}
         onOpenChange={setIsDeleteDialogOpen}
       >
@@ -383,7 +383,7 @@ const AccountDetailsPage: React.FC = () => {
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
-      </AlertDialog>
+      </AlertDialog> */}
     </div>
   );
 };
