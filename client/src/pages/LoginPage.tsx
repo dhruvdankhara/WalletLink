@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -15,9 +15,10 @@ interface LoginFormData {
 
 export function LoginPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const { register, handleSubmit } = useForm<LoginFormData>();
-
   const submit = async (data: LoginFormData) => {
     try {
       const response = await AuthAPI.login({
@@ -27,9 +28,13 @@ export function LoginPage() {
 
       dispatch(login(response.data.user));
 
-      toast.success('Login successful! Redirecting to Dashboard...');
+      toast.success('Login successful! Redirecting...');
 
-      window.location.href = '/dashboard';
+      const from = location.state?.from?.pathname || '/dashboard';
+
+      setTimeout(() => {
+        navigate(from, { replace: true });
+      }, 100);
     } catch (error: unknown) {
       console.error('Login error:', error);
       const errorMessage =
