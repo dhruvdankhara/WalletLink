@@ -2,7 +2,8 @@ export const DB_NAME = "WalletLink";
 
 export const cookieOption = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
+  secure: true,
+  sameSite: "None",
 };
 
 export const ROLE = {
