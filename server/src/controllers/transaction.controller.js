@@ -8,8 +8,9 @@ import Account from "../models/account.model.js";
 import { Types } from "mongoose";
 import { ROLE } from "../constants.js";
 
-const transactionAggregation = (transactionId, query = {}) => {
-  const { limit = 10, accountId, memberId } = query;
+const transactionAggregation = (transactionId, query = {}, user = null) => {
+  const { limit = 10, page = 1, accountId, memberId } = query;
+  const skip = (page - 1) * limit;
 
   const pipeline = [
     {
@@ -212,6 +213,12 @@ const transactionAggregation = (transactionId, query = {}) => {
     },
   ];
 
+  if (skip > 0) {
+    pipeline.push({
+      $skip: skip,
+    });
+  }
+
   if (limit) {
     pipeline.push({
       $limit: Number(limit),
@@ -225,11 +232,17 @@ const transactionAggregation = (transactionId, query = {}) => {
       },
     });
   }
-
   if (memberId) {
     pipeline.unshift({
       $match: {
         userId: new Types.ObjectId(memberId),
+      },
+    });
+  } else if (user) {
+    // Default to family transactions if no specific member
+    pipeline.unshift({
+      $match: {
+        familyId: new Types.ObjectId(user.familyId),
       },
     });
   }
@@ -298,9 +311,8 @@ export const createTransaction = asyncHandler(async (req, res) => {
     description,
     datetime: new Date(datetime),
   });
-
   const newTransaction = await Transaction.aggregate(
-    transactionAggregation(transaction._id.toString())
+    transactionAggregation(transaction._id.toString(), {}, req.user)
   );
 
   if (newTransaction.length === 0) {
@@ -317,18 +329,47 @@ export const createTransaction = asyncHandler(async (req, res) => {
 });
 
 export const getTransaction = asyncHandler(async (req, res) => {
-  const transaction = await Transaction.aggregate(
-    transactionAggregation(null, { ...req.query, memberId: req.user._id })
+  const { limit = 10, page = 1, accountId, memberId } = req.query;
+  const queryParams = {
+    limit: Number(limit),
+    page: Number(page),
+    accountId,
+    memberId: memberId || req.user._id,
+  };
+
+  // Build match conditions for counting
+  const matchConditions = {
+    familyId: req.user.familyId,
+    userId: new Types.ObjectId(queryParams.memberId),
+  };
+
+  if (accountId) {
+    matchConditions.accountId = new Types.ObjectId(accountId);
+  }
+
+  // Get total count for pagination
+  const totalItems = await Transaction.countDocuments(matchConditions);
+  const totalPages = Math.ceil(totalItems / queryParams.limit);
+  const currentPage = queryParams.page;
+  // Get transactions with aggregation
+  const transactions = await Transaction.aggregate(
+    transactionAggregation(null, queryParams, req.user)
   );
 
-  if (transaction.length === 0) {
-    throw new ApiError(404, "Transaction not found");
-  }
+  const pagination = {
+    currentPage,
+    totalPages,
+    totalItems,
+    itemsPerPage: queryParams.limit,
+    hasNext: currentPage < totalPages,
+    hasPrev: currentPage > 1,
+  };
 
   const response = new ApiResponse(
     200,
-    "Transaction retrieved successfully",
-    transaction
+    "Transactions retrieved successfully",
+    transactions,
+    pagination
   );
 
   return res.status(response.statusCode).json(response);
@@ -341,7 +382,9 @@ export const getTransactionById = asyncHandler(async (req, res) => {
     throw new ApiError(401, "Transaction ID is required");
   }
 
-  const transaction = await Transaction.aggregate(transactionAggregation(id));
+  const transaction = await Transaction.aggregate(
+    transactionAggregation(id, {}, req.user)
+  );
 
   if (transaction.length === 0) {
     throw new ApiError(404, "Transaction not found");
@@ -447,10 +490,9 @@ export const updateTransaction = asyncHandler(async (req, res) => {
     },
     { new: true }
   );
-
   // Get the updated transaction with populated fields
   const populatedTransaction = await Transaction.aggregate(
-    transactionAggregation(updatedTransaction._id)
+    transactionAggregation(updatedTransaction._id, {}, req.user)
   );
 
   if (!populatedTransaction || populatedTransaction.length === 0) {

@@ -29,3 +29,10 @@ export interface CreateTransactionRequest {
   datetime: Date;
   attachments?: string | null;
 }
+
+export interface TransactionQuery {
+  limit?: number;
+  page?: number;
+  accountId?: string;
+  memberId?: string;
+}

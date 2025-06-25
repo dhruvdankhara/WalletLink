@@ -5,60 +5,54 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  Input,
-  Label,
   TransactionRecordCard,
   TransactionModel,
+  PageSizeSelector,
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 } from '@/components';
 import type { Transaction } from '@/types/api/transaction.types';
+import type { PaginatedResponse } from '@/types/response';
 import { TransactionAPI } from '@/api';
 
 const TransactionPage = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [paginatedData, setPaginatedData] =
+    useState<PaginatedResponse<Transaction> | null>(null);
   const [loading, setLoading] = useState(true);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [isTransactionModelOpen, setIsTransactionModelOpen] = useState(false);
-
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('all');
-  const [filterCategory, setFilterCategory] = useState('all');
 
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
         setLoading(true);
-        const response = await TransactionAPI.getAll({ limit: 20 });
-        setTransactions(response.data);
+        const response = await TransactionAPI.getAll({
+          limit: itemsPerPage,
+          page: currentPage,
+        });
+        setPaginatedData(response);
       } catch (error) {
         console.error('Failed to fetch transactions:', error);
-        setTransactions([]);
+        setPaginatedData(null);
       } finally {
         setLoading(false);
       }
     };
 
     fetchTransactions();
-  }, []);
+  }, [currentPage, itemsPerPage]);
 
-  const filteredTransactions = transactions.filter((transaction) => {
-    const matchesSearch =
-      transaction.description
-        ?.toLowerCase()
-        ?.includes(searchTerm.toLowerCase()) ||
-      transaction.category.name
-        ?.toLowerCase()
-        ?.includes(searchTerm.toLowerCase());
-    const matchesType = filterType === 'all' || transaction.type === filterType;
-    const matchesCategory =
-      filterCategory === 'all' || transaction.category.name === filterCategory;
-
-    return matchesSearch && matchesType && matchesCategory;
-  });
-
-  const categories = [
-    'all',
-    ...new Set(transactions.map((t) => t.category.name)),
-  ];
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [itemsPerPage]);
+  const transactions = paginatedData?.data || [];
+  const pagination = paginatedData?.pagination;
 
   const formatDate = (date: Date) => {
     return new Date(date).toLocaleString('en-IN', {
@@ -82,64 +76,10 @@ const TransactionPage = () => {
           Add Transaction
         </Button>
       </div>
-
-      {/* Filters */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Filters</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <div>
-              <Label htmlFor="search">Search</Label>
-              <Input
-                id="search"
-                placeholder="Search transactions..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-            <div>
-              <Label htmlFor="type">Type</Label>
-              <select
-                id="type"
-                className="border-input bg-background w-full rounded-md border px-3 py-2 text-sm"
-                value={filterType}
-                onChange={(e) => setFilterType(e.target.value)}
-              >
-                <option value="all">All Types</option>
-                <option value="income">Income</option>
-                <option value="expense">Expense</option>
-              </select>
-            </div>
-            <div>
-              <Label htmlFor="category">Category</Label>
-              <select
-                id="category"
-                className="border-input bg-background w-full rounded-md border px-3 py-2 text-sm"
-                value={filterCategory}
-                onChange={(e) => setFilterCategory(e.target.value)}
-              >
-                {categories.map((category) => (
-                  <option key={category} value={category}>
-                    {category === 'all' ? 'All Categories' : category}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
       {/* Transactions */}
       <Card>
         <CardHeader>
-          <CardTitle>Recent Transactions</CardTitle>
-          <p className="text-muted-foreground text-sm">
-            {loading
-              ? 'Loading...'
-              : `Showing ${filteredTransactions.length} of ${transactions.length} transactions`}
-          </p>
+          <CardTitle>Recent Transactions</CardTitle>{' '}
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
@@ -147,14 +87,17 @@ const TransactionPage = () => {
               <div className="text-muted-foreground py-8 text-center">
                 Loading transactions...
               </div>
-            ) : filteredTransactions.length === 0 ? (
+            ) : transactions.length === 0 ? (
               <div className="text-muted-foreground py-8 text-center">
                 No transactions found matching your criteria
               </div>
             ) : (
               (() => {
-                const groupedTransactions = filteredTransactions.reduce(
-                  (groups, transaction) => {
+                const groupedTransactions = transactions.reduce(
+                  (
+                    groups: Record<string, Transaction[]>,
+                    transaction: Transaction
+                  ) => {
                     const date = formatDate(new Date(transaction.datetime));
                     if (!groups[date]) {
                       groups[date] = [];
@@ -166,13 +109,14 @@ const TransactionPage = () => {
                 );
 
                 return Object.entries(groupedTransactions).map(
-                  ([date, transactions]) => (
+                  ([date, transactionsList]: [string, Transaction[]]) => (
                     <div key={date} className="space-y-2">
                       <h3 className="text-foreground border-b pb-2 text-lg font-semibold">
                         {date}
                       </h3>
                       <div className="space-y-2 sm:pl-4">
-                        {transactions.map((transaction) => (
+                        {' '}
+                        {transactionsList.map((transaction: Transaction) => (
                           <TransactionRecordCard
                             key={transaction._id}
                             transaction={transaction}
@@ -187,12 +131,128 @@ const TransactionPage = () => {
           </div>
         </CardContent>
       </Card>
+      {/* Pagination  */}
+      {pagination && !loading && (
+        <div className="flex flex-col items-center justify-between space-y-4 sm:flex-row">
+          <div className="flex items-center justify-center sm:justify-start">
+            <PageSizeSelector
+              pageSize={itemsPerPage}
+              onPageSizeChange={setItemsPerPage}
+            />
+          </div>
 
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+            <Pagination>
+              <PaginationContent>
+                <PaginationItem>
+                  <PaginationPrevious
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (pagination.hasPrev)
+                        setCurrentPage(pagination.currentPage - 1);
+                    }}
+                    className={
+                      !pagination.hasPrev
+                        ? 'pointer-events-none opacity-50'
+                        : ''
+                    }
+                  />
+                </PaginationItem>
+
+                {(() => {
+                  const pages = [];
+                  const totalPages = pagination.totalPages;
+                  const currentPage = pagination.currentPage;
+
+                  if (totalPages <= 7) {
+                    for (let i = 1; i <= totalPages; i++) {
+                      pages.push(i);
+                    }
+                  } else {
+                    pages.push(1);
+
+                    if (currentPage > 4) {
+                      pages.push('...');
+                    }
+
+                    const start = Math.max(2, currentPage - 1);
+                    const end = Math.min(totalPages - 1, currentPage + 1);
+
+                    for (let i = start; i <= end; i++) {
+                      pages.push(i);
+                    }
+
+                    if (currentPage < totalPages - 3) {
+                      pages.push('...');
+                    }
+
+                    if (totalPages > 1) {
+                      pages.push(totalPages);
+                    }
+                  }
+
+                  return pages.map((page, index) => (
+                    <PaginationItem key={index}>
+                      {page === '...' ? (
+                        <PaginationEllipsis />
+                      ) : (
+                        <PaginationLink
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setCurrentPage(Number(page));
+                          }}
+                          isActive={currentPage === page}
+                        >
+                          {page}
+                        </PaginationLink>
+                      )}
+                    </PaginationItem>
+                  ));
+                })()}
+
+                <PaginationItem>
+                  <PaginationNext
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (pagination.hasNext)
+                        setCurrentPage(pagination.currentPage + 1);
+                    }}
+                    className={
+                      !pagination.hasNext
+                        ? 'pointer-events-none opacity-50'
+                        : ''
+                    }
+                  />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </div>
+
+          <div className="text-muted-foreground text-sm">
+            Showing {(pagination.currentPage - 1) * pagination.itemsPerPage + 1}{' '}
+            to{' '}
+            {Math.min(
+              pagination.currentPage * pagination.itemsPerPage,
+              pagination.totalItems
+            )}{' '}
+            of {pagination.totalItems} transactions
+          </div>
+        </div>
+      )}
       <TransactionModel
         isOpen={isTransactionModelOpen}
         onClose={() => setIsTransactionModelOpen(false)}
         onCreate={(data) => {
-          setTransactions((prev) => [data, ...prev]);
+          setPaginatedData((prev) => {
+            if (!prev) return prev;
+            return {
+              ...prev,
+              data: [data, ...prev.data],
+            };
+          });
         }}
       />
     </div>

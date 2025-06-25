@@ -10,9 +10,6 @@ import {
   TrendingUp,
   TrendingDown,
   Activity,
-  MoreVertical,
-  Download,
-  Share2,
 } from 'lucide-react';
 import {
   Button,
@@ -20,19 +17,16 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
   TransactionRecordCard,
-  // AlertDialog,
-  // AlertDialogAction,
-  // AlertDialogCancel,
-  // AlertDialogContent,
-  // AlertDialogDescription,
-  // AlertDialogFooter,
-  // AlertDialogHeader,
-  // AlertDialogTitle,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  EditAccountModel,
 } from '@/components';
 import type { AccountWithTransactions } from '@/types/api/account.types';
 import { AccountAPI, TransactionAPI } from '@/api';
@@ -48,8 +42,10 @@ const AccountDetailsPage = () => {
 
   const [isBalanceVisible, setIsBalanceVisible] = useState(true);
 
-  // const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  // const [isDeleting, setIsDeleting] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
   useEffect(() => {
     if (!id) {
@@ -82,12 +78,26 @@ const AccountDetailsPage = () => {
   }, [id, navigate]);
 
   const handleEdit = () => {
-    toast.error('Edit feature is coming soon!');
+    setIsEditDialogOpen(true);
   };
 
-  // const handleDelete = async () => {
-  //   toast.error('Delete feature is coming soon!');
-  // };
+  const handleDelete = async () => {
+    setIsDeleting(true);
+
+    AccountAPI.deleteAccount(id!)
+      .then(() => {
+        toast.success('Account deleted successfully');
+        navigate('/account');
+      })
+      .catch((error) => {
+        console.log('Error deleting account:', error);
+        toast.error(error?.message || 'Failed to delete account');
+      })
+      .finally(() => {
+        setIsDeleting(false);
+        setIsDeleteDialogOpen(false);
+      });
+  };
 
   const formatDate = (date: Date | string) => {
     return new Intl.DateTimeFormat('en-IN', {
@@ -184,29 +194,11 @@ const AccountDetailsPage = () => {
           <Button
             variant="outline"
             size="sm"
-            // onClick={() => setIsDeleteDialogOpen(true)}
+            onClick={() => setIsDeleteDialogOpen(true)}
           >
             <Trash2 className="mr-2 h-4 w-4" />
             <span>Delete</span>
           </Button>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm">
-                <MoreVertical className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>
-                <Download className="mr-2 h-4 w-4" />
-                Export Data
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Share2 className="mr-2 h-4 w-4" />
-                Share Account
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
       </div>
 
@@ -358,7 +350,7 @@ const AccountDetailsPage = () => {
       </Card>
 
       {/* Delete Confirmation Dialog */}
-      {/* <AlertDialog
+      <AlertDialog
         open={isDeleteDialogOpen}
         onOpenChange={setIsDeleteDialogOpen}
       >
@@ -383,7 +375,14 @@ const AccountDetailsPage = () => {
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
-      </AlertDialog> */}
+      </AlertDialog>
+
+      <EditAccountModel
+        isOpen={isEditDialogOpen}
+        account={account}
+        onClose={() => setIsEditDialogOpen(false)}
+        onEdit={(data) => setAccount(data)}
+      />
     </div>
   );
 };

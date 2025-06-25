@@ -1,15 +1,14 @@
 import axios from '@/lib/axios';
-import type { ApiResponse } from '@/types/response';
+import type { ApiResponse, PaginatedResponse } from '@/types/response';
 import type {
   CreateTransactionRequest,
   Transaction,
+  TransactionQuery,
 } from '@/types/api/transaction.types';
 
-export const getAll = async (query: {
-  limit?: number;
-  accountId?: string;
-  memberId?: string;
-}): Promise<ApiResponse<Transaction[]>> => {
+export const getAll = async (
+  query: TransactionQuery = {}
+): Promise<PaginatedResponse<Transaction>> => {
   const response = await axios.get('/transactions', { params: query });
   return response.data;
 };

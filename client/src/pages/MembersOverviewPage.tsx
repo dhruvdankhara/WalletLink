@@ -8,7 +8,7 @@ import {
 } from '@/components';
 import type { Account } from '@/types/api/account.types';
 import type { User } from '@/types/api/auth.types';
-import { ArrowLeft, Edit3, Trash2, Wallet } from 'lucide-react';
+import { ArrowLeft, Edit3, Wallet } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -82,11 +82,6 @@ const MembersOverviewPage = () => {
                     <Edit3 className="mr-2 h-4 w-4" />
                     Edit
                   </Button>
-
-                  <Button variant="outline" size="sm" className="sm:w-auto">
-                    <Trash2 className="mr-2 h-4 w-4" />
-                    Delete
-                  </Button>
                 </div>
               </div>
             </div>
@@ -127,11 +122,6 @@ const MembersOverviewPage = () => {
           >
             <Edit3 className="mr-2 h-4 w-4" />
             Edit
-          </Button>
-
-          <Button variant="outline" size="sm" className="sm:w-auto">
-            <Trash2 className="mr-2 h-4 w-4" />
-            Delete
           </Button>
         </div>
       </div>

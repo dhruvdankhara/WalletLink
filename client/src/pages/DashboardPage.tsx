@@ -8,6 +8,9 @@ import {
   Badge,
   DateRangePicker,
   TransactionRecordCard,
+  AddMemberModel,
+  TransactionModel,
+  CreateAccountModel,
 } from '@/components';
 import {
   Users,
@@ -16,7 +19,6 @@ import {
   TrendingDown,
   DollarSign,
   Plus,
-  ArrowLeftRight,
 } from 'lucide-react';
 import {
   BarChart,
@@ -63,7 +65,11 @@ export default function DashboardPage() {
     []
   );
 
-  useEffect(() => {
+  const [isAddAccountOpen, setIsAddAccountOpen] = useState(false);
+  const [isAddMemberOpen, setIsAddMemberOpen] = useState(false);
+  const [isAddTransactionOpen, setIsAddTransactionOpen] = useState(false);
+
+  const fetchDashboardDetiles = () => {
     DashboardAPI.getAllMembers({
       from: date.from,
       to: date.to,
@@ -106,6 +112,10 @@ export default function DashboardPage() {
       .catch((error) => {
         console.error('Error fetching expense breakdown:', error);
       });
+  };
+
+  useEffect(() => {
+    fetchDashboardDetiles();
   }, [date]);
 
   const formatCurrency = (amount: number) => {
@@ -136,25 +146,29 @@ export default function DashboardPage() {
 
         {/* Buttons */}
         <div className="flex flex-wrap gap-2">
-          <Button size="sm" className="flex items-center gap-2">
+          <Button
+            size="sm"
+            className="flex items-center gap-2"
+            onClick={() => setIsAddMemberOpen(true)}
+          >
             <Plus className="h-4 w-4" />
             Add Member
           </Button>
-          <Button size="sm" className="flex items-center gap-2">
+          <Button
+            size="sm"
+            className="flex items-center gap-2"
+            onClick={() => setIsAddTransactionOpen(true)}
+          >
             <Plus className="h-4 w-4" />
             Add Transaction
           </Button>
-          <Button size="sm" className="flex items-center gap-2">
-            <Plus className="h-4 w-4" />
-            Add Account
-          </Button>
           <Button
             size="sm"
-            variant="outline"
             className="flex items-center gap-2"
+            onClick={() => setIsAddAccountOpen(true)}
           >
-            <ArrowLeftRight className="h-4 w-4" />
-            Transfer
+            <Plus className="h-4 w-4" />
+            Add Account
           </Button>
         </div>
       </div>
@@ -471,6 +485,23 @@ export default function DashboardPage() {
           </div>
         </CardContent>
       </Card>
+
+      <AddMemberModel
+        isOpen={isAddMemberOpen}
+        onClose={() => setIsAddMemberOpen(false)}
+      />
+      <TransactionModel
+        isOpen={isAddTransactionOpen}
+        onClose={() => setIsAddTransactionOpen(false)}
+        onCreate={() => {
+          fetchDashboardDetiles();
+        }}
+      />
+      <CreateAccountModel
+        isOpen={isAddAccountOpen}
+        onClose={() => setIsAddAccountOpen(false)}
+        onCreate={() => {}}
+      />
     </div>
   );
 }

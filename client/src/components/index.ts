@@ -1,4 +1,3 @@
-// Component exports
 export { default as AddMemberModel } from './AddMemberModel';
 export { default as ColorSelector } from './ColorSelector';
 export { default as CreateAccountModel } from './CreateAccountModel';
@@ -8,9 +7,11 @@ export { default as EditCategoryModel } from './EditCategoryModel';
 export { default as EditMemberModel } from './EditMemberModel';
 export { default as EditTransactionModel } from './EditTransactionModel';
 export { default as IconSelector } from './IconSelector';
+export { default as PageSizeSelector } from './PageSizeSelector';
 export { default as PrivateRoute } from './PrivateRoute';
 export { default as TransactionModel } from './TransactionModel';
 export { default as TransactionRecordCard } from './TransactionRecordCard';
+export { default as EditAccountModel } from './EditAccountModel';
 
 // Layout exports
 export * from './layout';
