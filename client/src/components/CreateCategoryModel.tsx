@@ -1,16 +1,17 @@
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   Dialog,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import ColorSelector from './ColorSelector';
-import IconSelector from './IconSelector';
+  Input,
+  Label,
+  ColorSelector,
+  IconSelector,
+  Switch,
+} from '@/components';
 import { useState } from 'react';
 import type { Color } from '@/types/api/color.types';
 import type { Icon } from '@/types/api/icon.types';
@@ -18,7 +19,6 @@ import { CategoryAPI } from '@/api';
 import toast from 'react-hot-toast';
 import { Loader2 } from 'lucide-react';
 import type { Category } from '@/types/api/category.type';
-import { Switch } from '@/components/ui/switch';
 
 interface CreateCategoryModelProps {
   onClose: () => void;

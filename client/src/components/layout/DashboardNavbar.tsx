@@ -1,5 +1,13 @@
 import { Link, NavLink } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components';
 import {
   User,
   LogOut,
@@ -11,13 +19,12 @@ import {
   FolderOpen,
   ChevronDown,
 } from 'lucide-react';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '@/store/store';
 import toast from 'react-hot-toast';
 import { AuthAPI } from '@/api';
 import { logout } from '@/store/slices/authSlice';
+import logo from '@/assets/logo.png';
 
 export function DashboardNavbar() {
   const dispatch = useDispatch();
@@ -48,7 +55,7 @@ export function DashboardNavbar() {
               to="/dashboard"
               className="text-primary hover:text-primary/80 text-xl font-bold transition-colors"
             >
-              WalletLink
+              <img src={logo} alt="" className="h-10" />
             </Link>
           </div>
 

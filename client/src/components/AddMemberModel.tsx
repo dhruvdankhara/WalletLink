@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { MemberAPI } from '@/api';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   Dialog,
   DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+  Input,
+  Label,
+} from '@/components';
 import { Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import toast from 'react-hot-toast';

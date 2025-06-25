@@ -1,12 +1,11 @@
 import { MemberAPI } from '@/api';
-import AddMemberModel from '@/components/AddMemberModel';
-import { Button } from '@/components/ui/button';
+import { AddMemberModel, Button } from '@/components';
 import type { User } from '@/types/api/auth.types';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router';
 
-export function MembersPage() {
+export default function MembersPage() {
   const [members, setMembers] = useState<User[]>([]);
   const [isAddMemberModalOpen, setIsAddMemberModalOpen] = useState(false);
 

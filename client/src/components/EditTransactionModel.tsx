@@ -6,16 +6,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from './ui/dialog';
-import { ChevronDownIcon, Loader2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { AccountAPI, CategoryAPI, TransactionAPI } from '@/api';
-import { Input } from './ui/input';
-import { Label } from '@radix-ui/react-label';
-import { Button } from './ui/button';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import {
   Select,
   SelectContent,
   SelectGroup,
@@ -23,12 +13,23 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+  Input,
+  Label,
+  Button,
+  RadioGroup,
+  RadioGroupItem,
+  Textarea,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Calendar,
+} from '@/components';
+import { ChevronDownIcon, Loader2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { AccountAPI, CategoryAPI, TransactionAPI } from '@/api';
 import type { Account } from '@/types/api/account.types';
 import type { Category } from '@/types/api/category.type';
-import { Textarea } from './ui/textarea';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-import { Calendar } from './ui/calendar';
 
 interface EditTransactionModelProps {
   onClose: () => void;

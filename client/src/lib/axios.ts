@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import type { ApiErrorResponse } from '../types/response.ts';
+import type { ApiErrorResponse } from '@/types/response.ts';
 
 const BASE_URL =
   import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';

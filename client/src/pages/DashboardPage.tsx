@@ -1,7 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Badge,
+  DateRangePicker,
+  TransactionRecordCard,
+} from '@/components';
 import {
   Users,
   Wallet,
@@ -23,7 +30,6 @@ import {
   Pie,
   Cell,
 } from 'recharts';
-import DateRangePicker from '@/components/DateRangePicker';
 import { useEffect, useState } from 'react';
 import { DashboardAPI } from '@/api';
 import type { Account } from '@/types/api/account.types';
@@ -34,7 +40,6 @@ import type {
   monthlyIncomeExpense,
 } from '@/types/api/dashboard.types';
 import type { Transaction } from '@/types/api/transaction.types';
-import TransactionRecordCard from '@/components/TransactionRecordCard';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store/store';
 
@@ -43,7 +48,7 @@ type DateRange = {
   to: Date;
 };
 
-export function DashboardPage() {
+export default function DashboardPage() {
   const { data } = useSelector((state: RootState) => state.auth);
 
   const [members, setMembers] = useState<DashboardMembers[]>([]);

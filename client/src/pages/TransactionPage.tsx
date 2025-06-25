@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Input,
+  Label,
+  TransactionRecordCard,
+  TransactionModel,
+} from '@/components';
 import type { Transaction } from '@/types/api/transaction.types';
-import TransactionModel from '@/components/TransactionModel';
-import TransactionRecordCard from '@/components/TransactionRecordCard';
 import { TransactionAPI } from '@/api';
 
 const TransactionPage = () => {

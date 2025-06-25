@@ -2,9 +2,6 @@ import { TransactionAPI } from '@/api';
 import type { Transaction } from '@/types/api/transaction.types';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,7 +12,14 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Button,
+  Badge,
+  EditTransactionModel,
+} from '@/components';
 import {
   ArrowLeft,
   Calendar,
@@ -28,7 +32,6 @@ import {
   Edit3,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
-import EditTransactionModel from '@/components/EditTransactionModel';
 
 const TransactionDetailedPage = () => {
   const { id } = useParams<{ id: string }>();

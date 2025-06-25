@@ -1,19 +1,21 @@
-import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardTitle,
+  Badge,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Label,
+  CreateCategoryModel,
+  EditCategoryModel,
+} from '@/components';
 import type { Category } from '@/types/api/category.type';
 import { useEffect, useState } from 'react';
 import { CategoryAPI } from '@/api';
 import toast from 'react-hot-toast';
-import CreateCategoryModel from '@/components/CreateCategoryModel';
 import { Layers, Loader2, MoreVertical, Trash2, Edit3 } from 'lucide-react';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import { Label } from '@/components/ui/label';
-import EditCategoryModel from '@/components/EditCategoryModel';
 
 const CategoryPage = () => {
   const [loading, setLoading] = useState(true);

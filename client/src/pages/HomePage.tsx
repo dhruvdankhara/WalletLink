@@ -1,19 +1,19 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Link } from 'react-router-dom';
+import { Button } from '@/components';
 
-export function HomePage() {
+export default function HomePage() {
   return (
     <div className="space-y-12">
       {/* Hero Section */}
-      <section className="text-center space-y-6 py-12">
-        <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
+      <section className="space-y-6 py-12 text-center">
+        <h1 className="from-primary via-primary to-primary/80 bg-gradient-to-r bg-clip-text text-5xl font-bold text-transparent">
           WalletLink
         </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-muted-foreground mx-auto max-w-2xl text-xl">
           Manage your family finances with ease. Track expenses, income, and
           collaborate with family members seamlessly.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col justify-center gap-4 sm:flex-row">
           <Link to="/register">
             <Button size="lg" className="w-full sm:w-auto">
               Get Started Free
@@ -28,9 +28,9 @@ export function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="grid md:grid-cols-3 gap-8">
-        <div className="text-center space-y-4">
-          <div className="h-16 w-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto">
+      <section className="grid gap-8 md:grid-cols-3">
+        <div className="space-y-4 text-center">
+          <div className="bg-primary/10 mx-auto flex h-16 w-16 items-center justify-center rounded-lg">
             <span className="text-2xl">💳</span>
           </div>
           <h3 className="text-xl font-semibold">Account Management</h3>
@@ -40,8 +40,8 @@ export function HomePage() {
           </p>
         </div>
 
-        <div className="text-center space-y-4">
-          <div className="h-16 w-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto">
+        <div className="space-y-4 text-center">
+          <div className="bg-primary/10 mx-auto flex h-16 w-16 items-center justify-center rounded-lg">
             <span className="text-2xl">👨‍👩‍👧‍👦</span>
           </div>
           <h3 className="text-xl font-semibold">Family Collaboration</h3>
@@ -51,8 +51,8 @@ export function HomePage() {
           </p>
         </div>
 
-        <div className="text-center space-y-4">
-          <div className="h-16 w-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto">
+        <div className="space-y-4 text-center">
+          <div className="bg-primary/10 mx-auto flex h-16 w-16 items-center justify-center rounded-lg">
             <span className="text-2xl">📊</span>
           </div>
           <h3 className="text-xl font-semibold">Smart Analytics</h3>

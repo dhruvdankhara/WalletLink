@@ -1,5 +1,5 @@
 import axios from '@/lib/axios';
-import type { ApiResponse } from '../types/response';
+import type { ApiResponse } from '@/types/response';
 import type { Account } from '@/types/api/account.types';
 import type {
   CategoryBreakdown,

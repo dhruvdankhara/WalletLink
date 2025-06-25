@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button, Input, Label } from '@/components';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { AuthAPI } from '@/api';
 import toast from 'react-hot-toast';
-import { login } from '../store/slices/authSlice';
+import { login } from '@/store/slices/authSlice';
 import { useDispatch } from 'react-redux';
 
 interface RegisterFormData {
@@ -18,7 +16,7 @@ interface RegisterFormData {
   confirmPassword: string;
 }
 
-export function RegisterPage() {
+export default function RegisterPage() {
   const dispatch = useDispatch();
 
   const { register, handleSubmit } = useForm<RegisterFormData>();

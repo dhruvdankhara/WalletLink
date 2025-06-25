@@ -1,8 +1,6 @@
 import type { Transaction } from '@/types/api/transaction.types';
 import { ArrowDown, ArrowUp, Clock, User } from 'lucide-react';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Card, CardContent } from './ui/card';
+import { Badge, Button, Card, CardContent } from '@/components';
 import { Link } from 'react-router';
 
 const TransactionRecordCard = ({

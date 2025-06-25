@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { IconAPI } from '@/api';
 import type { Icon } from '@/types/api/icon.types';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import { Button } from './ui/button';
+import { Popover, PopoverContent, PopoverTrigger, Button } from '@/components';
 
 interface IconSelectorProps {
   onIconChange: (icon: Icon) => void;

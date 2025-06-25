@@ -1,0 +1,13 @@
+export { default as HomePage } from '@/pages/HomePage';
+export { default as LoginPage } from '@/pages/LoginPage';
+export { default as RegisterPage } from '@/pages/RegisterPage';
+export { default as DashboardPage } from '@/pages/DashboardPage';
+export { default as MembersPage } from '@/pages/MembersPage';
+export { default as AccountPage } from '@/pages/AccountPage';
+export { default as AccountOverviewPage } from '@/pages/AccountOverviewPage';
+export { default as InviteAccept } from '@/pages/InviteAccept';
+export { default as CategoryPage } from '@/pages/CategoryPage';
+export { default as TransactionPage } from '@/pages/TransactionPage';
+export { default as TransactionDetailedPage } from '@/pages/TransactionDetailedPage';
+export { default as MembersOverviewPage } from '@/pages/MembersOverviewPage';
+export { default as NotFoundPage } from '@/pages/NotFoundPage';

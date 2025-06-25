@@ -6,11 +6,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import ColorSelector from './ColorSelector';
-import IconSelector from './IconSelector';
+  Input,
+  Label,
+  ColorSelector,
+  IconSelector,
+} from '@/components';
 import { useState } from 'react';
 import type { Color } from '@/types/api/color.types';
 import type { Icon } from '@/types/api/icon.types';

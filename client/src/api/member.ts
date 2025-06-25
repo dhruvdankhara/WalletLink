@@ -1,5 +1,5 @@
 import axios from '@/lib/axios';
-import type { ApiResponse } from '../types/response';
+import type { ApiResponse } from '@/types/response';
 import type { User } from '@/types/api/auth.types';
 
 export const getAll = async (): Promise<ApiResponse<User[]>> => {

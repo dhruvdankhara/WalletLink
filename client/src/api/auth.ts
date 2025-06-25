@@ -4,8 +4,8 @@ import type {
   LoginResponse,
   RegisterRequest,
   User,
-} from '../types/api/auth.types';
-import type { ApiResponse } from '../types/response';
+} from '@/types/api/auth.types';
+import type { ApiResponse } from '@/types/response';
 
 export const register = async (
   data: RegisterRequest

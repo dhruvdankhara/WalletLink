@@ -1,7 +1,11 @@
 import { AccountAPI, MemberAPI } from '@/api';
-import EditMemberModel from '@/components/EditMemberModel';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+import {
+  Button,
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  EditMemberModel,
+} from '@/components';
 import type { Account } from '@/types/api/account.types';
 import type { User } from '@/types/api/auth.types';
 import { ArrowLeft, Edit3, Trash2, Wallet } from 'lucide-react';

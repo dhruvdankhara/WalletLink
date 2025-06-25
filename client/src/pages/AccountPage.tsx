@@ -1,13 +1,12 @@
 import { AccountAPI } from '@/api';
-import { Button } from '@/components/ui/button';
+import { Button, CreateAccountModel } from '@/components';
 import type { Account } from '@/types/api/account.types';
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { Loader2, Plus, Wallet, Banknote } from 'lucide-react';
-import CreateAccountModel from '@/components/CreateAccountModel';
 import { Link } from 'react-router';
 
-export function AccountPage() {
+export default function AccountPage() {
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 

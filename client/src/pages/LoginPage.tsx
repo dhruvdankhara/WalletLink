@@ -1,19 +1,17 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button, Input, Label } from '@/components';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { AuthAPI } from '@/api';
 import toast from 'react-hot-toast';
-import { login } from '../store/slices/authSlice';
+import { login } from '@/store/slices/authSlice';
 
 interface LoginFormData {
   email: string;
   password: string;
 }
 
-export function LoginPage() {
+export default function LoginPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();

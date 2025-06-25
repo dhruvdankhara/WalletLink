@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import {
@@ -14,30 +14,31 @@ import {
   Download,
   Share2,
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-// import {
-//   AlertDialog,
-//   AlertDialogAction,
-//   AlertDialogCancel,
-//   AlertDialogContent,
-//   AlertDialogDescription,
-//   AlertDialogFooter,
-//   AlertDialogHeader,
-//   AlertDialogTitle,
-// } from '@/components/ui/alert-dialog';
+  TransactionRecordCard,
+  // AlertDialog,
+  // AlertDialogAction,
+  // AlertDialogCancel,
+  // AlertDialogContent,
+  // AlertDialogDescription,
+  // AlertDialogFooter,
+  // AlertDialogHeader,
+  // AlertDialogTitle,
+} from '@/components';
 import type { AccountWithTransactions } from '@/types/api/account.types';
 import { AccountAPI, TransactionAPI } from '@/api';
-import TransactionRecordCard from '@/components/TransactionRecordCard';
 import type { Transaction } from '@/types/api/transaction.types';
 
-const AccountDetailsPage: React.FC = () => {
+const AccountDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
@@ -48,7 +49,6 @@ const AccountDetailsPage: React.FC = () => {
   const [isBalanceVisible, setIsBalanceVisible] = useState(true);
 
   // const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   // const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
