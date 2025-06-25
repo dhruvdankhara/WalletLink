@@ -166,7 +166,7 @@ const EditTransactionModel = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={isLoading ? undefined : onClose}>
-      <DialogContent className="sm:max-w-3xl">
+      <DialogContent className="max-h-10/12 overflow-auto sm:max-w-3xl">
         {isLoading && (
           <div className="bg-background/80 absolute inset-0 z-50 flex items-center justify-center rounded-lg backdrop-blur-sm">
             <div className="space-y-2 text-center">
@@ -181,7 +181,7 @@ const EditTransactionModel = ({
           <DialogHeader>
             <DialogTitle>Edit Transaction</DialogTitle>
           </DialogHeader>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-5">
+          <div className="grid grid-cols-1 sm:grid-cols-5 sm:gap-6">
             <div className="my-6 grid gap-6 sm:col-span-3">
               <div className="grid gap-3">
                 <Label htmlFor="title">Type</Label>

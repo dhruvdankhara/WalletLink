@@ -25,27 +25,27 @@ const TransactionRecordCard = ({
   return (
     <Link to={`/transactions/${transaction._id}`} className="block">
       <Card className="cursor-pointer transition-all duration-200 hover:shadow-md">
-        <CardContent>
-          <div className="flex items-center justify-between">
+        <CardContent className="p-3 sm:p-6">
+          <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
             {/* Left Section */}
-            <div className="flex flex-1 items-center space-x-4">
+            <div className="flex flex-1 items-center space-x-3 sm:space-x-4">
               <div
-                className={`flex h-12 w-12 items-center justify-center rounded-xl shadow-sm ${
+                className={`flex h-10 w-10 items-center justify-center rounded-xl shadow-sm sm:h-12 sm:w-12 ${
                   transaction.type === 'income' ? 'bg-green-100' : 'bg-red-100'
                 }`}
               >
                 {transaction.type === 'income' ? (
-                  <ArrowDown className="h-6 w-6 text-green-600" />
+                  <ArrowDown className="h-5 w-5 text-green-600 sm:h-6 sm:w-6" />
                 ) : (
-                  <ArrowUp className="h-6 w-6 text-red-600" />
+                  <ArrowUp className="h-5 w-5 text-red-600 sm:h-6 sm:w-6" />
                 )}
               </div>
 
-              <div className="flex-1 space-y-2">
-                <div className="flex items-center space-x-3">
+              <div className="min-w-0 flex-1 space-y-1 sm:space-y-2">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-3">
                   <div className="flex items-center space-x-2">
                     <div
-                      className="flex h-8 w-8 items-center justify-center rounded-lg"
+                      className="flex h-6 w-6 items-center justify-center rounded-lg sm:h-8 sm:w-8"
                       style={{
                         backgroundColor: `${transaction.category.color.hex}20`,
                         border: `1px solid ${transaction.category.color.hex}`,
@@ -54,21 +54,21 @@ const TransactionRecordCard = ({
                       <img
                         src={transaction.category.icon?.url}
                         alt={transaction.category.name}
-                        className="h-5 w-5"
+                        className="h-3 w-3 sm:h-5 sm:w-5"
                       />
                     </div>
-                    <h3 className="text-lg font-semibold">
+                    <h3 className="truncate text-base font-semibold sm:text-lg">
                       {transaction.category.name}
                     </h3>
                   </div>
                   {transaction.description && (
-                    <span className="text-muted-foreground text-sm">
+                    <span className="text-muted-foreground truncate text-xs sm:text-sm">
                       • {transaction.description}
                     </span>
                   )}
                 </div>
 
-                <div className="flex items-center space-x-4 text-sm">
+                <div className="flex flex-wrap items-center gap-2 text-sm sm:gap-4">
                   <div className="flex items-center space-x-1">
                     <Badge
                       variant="outline"
@@ -83,14 +83,18 @@ const TransactionRecordCard = ({
                         alt={transaction.account.name}
                         className="mr-1 h-3 w-3"
                       />
-                      {transaction.account.name}
+                      <span className="max-w-20 truncate sm:max-w-none">
+                        {transaction.account.name}
+                      </span>
                     </Badge>
                   </div>
 
                   <div className="flex items-center space-x-1">
                     <User className="text-muted-foreground h-3 w-3" />
                     <Badge variant="outline" className="text-xs">
-                      {transaction.user.firstname} {transaction.user.lastname}
+                      <span className="max-w-20 truncate sm:max-w-none">
+                        {transaction.user.firstname} {transaction.user.lastname}
+                      </span>
                     </Badge>
                   </div>
 
@@ -105,10 +109,10 @@ const TransactionRecordCard = ({
             </div>
 
             {/* Right Section  */}
-            <div className="flex items-center space-x-4">
-              <div className="text-right">
+            <div className="mt-2 flex items-center justify-between sm:mt-0 sm:justify-end sm:space-x-4">
+              <div className="text-left sm:text-right">
                 <p
-                  className={`text-xl font-bold ${getTypeColor(transaction.type)}`}
+                  className={`text-lg font-bold sm:text-xl ${getTypeColor(transaction.type)}`}
                 >
                   {transaction.type === 'income' ? '+' : '-'}₹
                   {transaction.amount.toFixed(2)}
@@ -125,7 +129,11 @@ const TransactionRecordCard = ({
               </div>
 
               <div>
-                <Button variant="outline" size="sm">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs sm:text-sm"
+                >
                   View
                 </Button>
               </div>

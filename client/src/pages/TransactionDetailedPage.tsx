@@ -164,22 +164,20 @@ const TransactionDetailedPage = () => {
   }
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6 p-6">
+    <div className="mx-auto max-w-4xl space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
+      <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center">
+        <div className="flex items-center gap-4">
           <Button variant="outline" size="sm" onClick={() => navigate(-1)}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back
           </Button>
           <div>
             <h1 className="text-3xl font-bold">Transaction Details</h1>
-            <p className="text-muted-foreground">
-              View complete transaction information
-            </p>
           </div>
-        </div>{' '}
-        <div className="flex items-center space-x-2">
+        </div>
+
+        <div className="flex items-center space-x-2 self-end">
           <Button variant="outline" onClick={handleEditTransaction}>
             <Edit3 className="mr-2 h-4 w-4" />
             Edit Transaction

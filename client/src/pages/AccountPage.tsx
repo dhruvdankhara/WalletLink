@@ -61,14 +61,13 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="space-y-1">
-          <h1 className="text-3xl font-bold tracking-tight">Accounts</h1>
-          <p className="text-muted-foreground">
-            Manage your financial accounts and track balances.
-          </p>
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            Accounts
+          </h1>
         </div>
         <Button onClick={handleAddAccount} className="gap-2">
           <Plus className="h-4 w-4" />

@@ -27,7 +27,6 @@ export default function MembersPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Family Members</h1>
-          <p className="text-muted-foreground">Manage your family members.</p>
         </div>
         <Button onClick={() => setIsAddMemberModalOpen(true)}>
           Invite Member
@@ -67,7 +66,7 @@ export default function MembersPage() {
                   </span>
                 </div>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="hidden items-center sm:flex">
                 <Button
                   variant="outline"
                   size="sm"

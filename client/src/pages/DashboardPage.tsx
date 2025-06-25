@@ -124,7 +124,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="space-y-8 p-6">
+    <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
@@ -456,7 +456,7 @@ export default function DashboardPage() {
                       <h3 className="text-foreground border-b pb-2 text-lg font-semibold">
                         {date}
                       </h3>
-                      <div className="space-y-2 pl-4">
+                      <div className="space-y-2 sm:pl-4">
                         {transactions.map((transaction) => (
                           <TransactionRecordCard
                             key={transaction._id}

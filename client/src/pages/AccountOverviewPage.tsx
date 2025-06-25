@@ -143,9 +143,9 @@ const AccountDetailsPage = () => {
   const balanceChange = account.currentBalance - account.initialBalance;
 
   return (
-    <div className="container mx-auto space-y-6 px-4 py-8">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-4">
           <Button variant="outline" size="sm" onClick={() => navigate(-1)}>
             <ArrowLeft className="mr-2 h-4 w-4" />
@@ -167,18 +167,18 @@ const AccountDetailsPage = () => {
               />
             </div>
             <div>
-              <h1 className="text-3xl font-bold">{account.name}</h1>
-              <p className="text-muted-foreground">
+              <h1 className="text-2xl font-bold sm:text-3xl">{account.name}</h1>
+              <p className="text-muted-foreground text-sm">
                 Created on {formatDate(account.createdAt)}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-end gap-2">
           <Button variant="outline" size="sm" onClick={handleEdit}>
             <Edit3 className="mr-2 h-4 w-4" />
-            Edit
+            <span>Edit</span>
           </Button>
 
           <Button
@@ -187,7 +187,7 @@ const AccountDetailsPage = () => {
             // onClick={() => setIsDeleteDialogOpen(true)}
           >
             <Trash2 className="mr-2 h-4 w-4" />
-            Delete
+            <span>Delete</span>
           </Button>
 
           <DropdownMenu>

@@ -60,14 +60,37 @@ const MembersOverviewPage = () => {
     fetchAccounts();
   }, [id]);
   return (
-    <div className="container mx-auto space-y-6 px-4 py-8">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <Button variant="outline" size="sm" onClick={() => navigate(-1)}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back
-          </Button>
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div>
+            <div className="flex items-center justify-between gap-4">
+              <Button variant="outline" size="sm" onClick={() => navigate(-1)}>
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back
+              </Button>
+
+              <div>
+                <div className="flex items-center gap-2 sm:hidden">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsEditMemberModelOpen(true)}
+                    className="sm:w-auto"
+                  >
+                    <Edit3 className="mr-2 h-4 w-4" />
+                    Edit
+                  </Button>
+
+                  <Button variant="outline" size="sm" className="sm:w-auto">
+                    <Trash2 className="mr-2 h-4 w-4" />
+                    Delete
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
 
           {member && (
             <div className="flex items-center gap-3">
@@ -84,10 +107,10 @@ const MembersOverviewPage = () => {
                 </AvatarFallback>
               </Avatar>
               <div>
-                <h1 className="text-3xl font-bold">
+                <h1 className="text-2xl font-bold lg:text-3xl">
                   {member.firstname} {member.lastname}
                 </h1>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-sm lg:text-base">
                   {member.email} • {member.role}
                 </p>
               </div>
@@ -95,17 +118,18 @@ const MembersOverviewPage = () => {
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="hidden items-center gap-2 sm:flex">
           <Button
             variant="outline"
             size="sm"
             onClick={() => setIsEditMemberModelOpen(true)}
+            className="sm:w-auto"
           >
             <Edit3 className="mr-2 h-4 w-4" />
             Edit
           </Button>
 
-          <Button variant="outline" size="sm">
+          <Button variant="outline" size="sm" className="sm:w-auto">
             <Trash2 className="mr-2 h-4 w-4" />
             Delete
           </Button>

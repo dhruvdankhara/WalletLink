@@ -105,7 +105,7 @@ const CreateAccountModel = ({
   };
   return (
     <Dialog open={isOpen} onOpenChange={isLoading ? undefined : onClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="max-h-10/12 overflow-auto sm:max-w-[425px]">
         {isLoading && (
           <div className="bg-background/80 absolute inset-0 z-50 flex items-center justify-center rounded-lg backdrop-blur-sm">
             <div className="space-y-2 text-center">

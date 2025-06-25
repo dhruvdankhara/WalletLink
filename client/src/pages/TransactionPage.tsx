@@ -69,11 +69,10 @@ const TransactionPage = () => {
   };
 
   return (
-    <div className="space-y-6 p-6">
+    <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Transactions</h1>
-          <p className="text-muted-foreground">Manage your transactions.</p>
+          <h1 className="text-3xl font-bold tracking-tight">Transactions</h1>
         </div>
         <Button
           onClick={() => {
@@ -172,7 +171,7 @@ const TransactionPage = () => {
                       <h3 className="text-foreground border-b pb-2 text-lg font-semibold">
                         {date}
                       </h3>
-                      <div className="space-y-2 pl-4">
+                      <div className="space-y-2 sm:pl-4">
                         {transactions.map((transaction) => (
                           <TransactionRecordCard
                             key={transaction._id}
