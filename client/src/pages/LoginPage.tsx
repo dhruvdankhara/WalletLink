@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Input, Label } from '@/components';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -13,8 +13,6 @@ interface LoginFormData {
 
 export default function LoginPage() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const { register, handleSubmit } = useForm<LoginFormData>();
   const submit = async (data: LoginFormData) => {
@@ -28,11 +26,7 @@ export default function LoginPage() {
 
       toast.success('Login successful! Redirecting...');
 
-      const from = location.state?.from?.pathname || '/dashboard';
-
-      setTimeout(() => {
-        navigate(from, { replace: true });
-      }, 100);
+      window.location.href = '/dashboard';
     } catch (error: unknown) {
       console.error('Login error:', error);
       const errorMessage =
