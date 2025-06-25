@@ -35,6 +35,8 @@ import type {
 } from '@/types/api/dashboard.types';
 import type { Transaction } from '@/types/api/transaction.types';
 import TransactionRecordCard from '@/components/TransactionRecordCard';
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/store/store';
 
 type DateRange = {
   from: Date;
@@ -42,20 +44,7 @@ type DateRange = {
 };
 
 export function DashboardPage() {
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      minimumFractionDigits: 0,
-    }).format(amount);
-  };
-
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-IN', {
-      month: 'short',
-      day: 'numeric',
-    });
-  };
+  const { data } = useSelector((state: RootState) => state.auth);
 
   const [members, setMembers] = useState<DashboardMembers[]>([]);
   const [accounts, setAccounts] = useState<Account[]>([]);
@@ -114,6 +103,21 @@ export function DashboardPage() {
       });
   }, [date]);
 
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-IN', {
+      month: 'short',
+      day: 'numeric',
+    });
+  };
+
   return (
     <div className="space-y-8 p-6">
       {/* Header */}
@@ -154,15 +158,19 @@ export function DashboardPage() {
 
       {/* *** Summary Cards*** */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Members</CardTitle>
-            <Users className="text-muted-foreground h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{members.length}</div>
-          </CardContent>
-        </Card>
+        {data?.role === 'admin' && (
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                Total Members
+              </CardTitle>
+              <Users className="text-muted-foreground h-4 w-4" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{members.length}</div>
+            </CardContent>
+          </Card>
+        )}
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

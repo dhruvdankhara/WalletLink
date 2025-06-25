@@ -77,18 +77,20 @@ export function DashboardNavbar() {
                 </Button>
               )}
             </NavLink>
-            <NavLink to="/members">
-              {({ isActive }) => (
-                <Button
-                  variant={isActive ? 'secondary' : 'ghost'}
-                  size="sm"
-                  className="flex items-center space-x-2"
-                >
-                  <Users className="h-4 w-4" />
-                  <span>Members</span>
-                </Button>
-              )}
-            </NavLink>
+            {data?.role == 'admin' && (
+              <NavLink to="/members">
+                {({ isActive }) => (
+                  <Button
+                    variant={isActive ? 'secondary' : 'ghost'}
+                    size="sm"
+                    className="flex items-center space-x-2"
+                  >
+                    <Users className="h-4 w-4" />
+                    <span>Members</span>
+                  </Button>
+                )}
+              </NavLink>
+            )}
             <NavLink to="/account">
               {({ isActive }) => (
                 <Button
