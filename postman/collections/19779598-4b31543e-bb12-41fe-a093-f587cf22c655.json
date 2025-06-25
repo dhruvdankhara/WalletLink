@@ -1,0 +1,1022 @@
+{
+	"info": {
+		"_postman_id": "19779598-4b31543e-bb12-41fe-a093-f587cf22c655",
+		"name": "WalletLink",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "create account",
+					"id": "19779598-c09a5d2f-3a79-4ac7-a502-517b4e41745c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "cash",
+									"type": "text",
+									"uuid": "8a49bd06-5f72-4a3f-8bf4-32c04d881aa1"
+								},
+								{
+									"key": "colorId",
+									"value": "6853dc0af3583bebde1856b6",
+									"type": "text",
+									"uuid": "7d4e73f1-22ec-4b91-8d1d-00bb8927e483"
+								},
+								{
+									"key": "iconId",
+									"value": "6853def829959a4d0ab252c4",
+									"type": "text",
+									"uuid": "ef5a970c-e0c9-4f95-ab54-31057f711aa1"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/accounts",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get account",
+					"id": "19779598-a11e326b-89dd-464c-b1c5-43aa842339ba",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/accounts?memberId=685910f312309f9d631e04d1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"accounts"
+							],
+							"query": [
+								{
+									"key": "memberId",
+									"value": "685910f312309f9d631e04d1",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Account",
+					"id": "19779598-b3177550-d5ee-4505-8616-77d4d9417dc1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Bitcoin",
+									"type": "text",
+									"uuid": "d9836baf-c636-4d38-93a3-bd95423d1816"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/accounts/685913e6c8d4c1ceb7833d65",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"accounts",
+								"685913e6c8d4c1ceb7833d65"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account",
+					"id": "19779598-8d55e1c1-8a68-4231-8d4a-3297ec401751",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/accounts/685913e6c8d4c1ceb7833d65",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"accounts",
+								"685913e6c8d4c1ceb7833d65"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get account by Id",
+					"id": "19779598-41771e1c-2c71-47f9-acfa-f91d304188f0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/accounts/685417d5020bfa5a05651284",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"accounts",
+								"685417d5020bfa5a05651284"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "19779598-908a82fd-5d1b-4eb9-95e3-be81b35df545"
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"id": "19779598-0c1b7d1f-51ab-47f8-b007-9e7a92832e3a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "dhruvdankhara02@gmail.com",
+									"type": "text",
+									"uuid": "ead0531d-9559-4f25-aa4b-b841fbf9adf3"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text",
+									"uuid": "92582041-4d9c-4833-8177-26529686d4a4"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"id": "19779598-c924ec44-a435-4779-9b3b-d7d94076a24e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/me",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"id": "19779598-a1a129e1-b98a-47d0-b39c-4f62acb8871e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/logout",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"id": "19779598-a6745853-ccdf-47ff-88e7-7243b85d7559",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"id": "19779598-19731827-4e48-47c3-8809-8b746317c5f3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/update",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "avatar",
+					"id": "19779598-1c6f43d7-45d3-474f-9089-058cac1d176d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/avatar",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"id": "19779598-3a77574a-cb8f-47fc-9762-1fc96a3049bf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/users/change-password",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "19779598-00beb6d0-0e7f-4cc4-875d-6c895d7ffaa3"
+		},
+		{
+			"name": "colors",
+			"item": [
+				{
+					"name": "get  colors",
+					"id": "19779598-6c1eaf7c-6d7d-43b2-af35-4e64bbfdb79c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/colors",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"colors"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "19779598-da19d0b4-dcd2-467c-a151-f4f37a3603e1"
+		},
+		{
+			"name": "icons",
+			"item": [
+				{
+					"name": "get icons",
+					"id": "19779598-168e85ce-9f95-40d6-a8a2-1c8bf3e48795",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/icons",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"icons"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "19779598-5335eb82-4d9c-40ff-96fc-304da6226b83"
+		},
+		{
+			"name": "members",
+			"item": [
+				{
+					"name": "add member",
+					"id": "19779598-225a8620-3f64-4baa-8f6e-167c3dc2e40b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "blogger1266@gmail.com",
+									"type": "text",
+									"uuid": "879326c1-c2f8-4595-a19d-8cda5c77d142"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/members",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accept request",
+					"id": "19779598-47cf33f5-2ae7-4558-a6b0-ae3756aa9e75",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstname",
+									"value": "blogger",
+									"type": "text",
+									"uuid": "c72ee9e2-1d20-46dc-9fcc-9997f20eb245"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text",
+									"uuid": "646e1c11-0442-4f4a-9256-6de8bf30c5a7"
+								},
+								{
+									"key": "lastname",
+									"value": "dankhara",
+									"type": "text",
+									"uuid": "2c2063de-f487-4268-83e9-70a7efe119ca"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/members/invite?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsb2dnZXIxMjY2QGdtYWlsLmNvbSIsImZhbWlseUlkIjoiNjg1MmI4ZGQ0NzkzOWMxYjgyMjdmYmE3IiwiaWF0IjoxNzUwNDA2NzMzfQ.eV8Kykpy9e2jw3R1nbou6i5TDK4236w2fI2g6Za5-2I",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"members",
+								"invite"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsb2dnZXIxMjY2QGdtYWlsLmNvbSIsImZhbWlseUlkIjoiNjg1MmI4ZGQ0NzkzOWMxYjgyMjdmYmE3IiwiaWF0IjoxNzUwNDA2NzMzfQ.eV8Kykpy9e2jw3R1nbou6i5TDK4236w2fI2g6Za5-2I"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get members",
+					"id": "19779598-d961a819-b09b-4baa-ac94-7da603983697",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/members",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"members"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"id": "19779598-9ace8ced-0cab-42e9-a04b-dd2df401fd3a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/members/68551e764cdbe318593c1856",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"members",
+								"68551e764cdbe318593c1856"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get member by id",
+					"id": "19779598-90c55111-25e1-4496-8a69-95b92cb319ee",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/members/685910f312309f9d631e04d1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"members",
+								"685910f312309f9d631e04d1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update memebr",
+					"id": "19779598-f98cf774-a875-423b-bb30-04ed065e0197",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/members/gkrugt7i35gohfnl4ihfpo3ihwgn",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"members",
+								"gkrugt7i35gohfnl4ihfpo3ihwgn"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "19779598-fa289c8c-a979-4157-aa23-724be5a77e00"
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "create",
+					"id": "19779598-01ec3e36-6947-4299-94be-200e36047a51",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "wow\n",
+									"type": "text",
+									"uuid": "948d3e52-c284-4217-8c9c-83db1017c789"
+								},
+								{
+									"key": "colorId",
+									"value": "68541451301ad809cd79cbb2",
+									"type": "text",
+									"uuid": "f112f3e7-b3d4-40ce-a39c-38337dcec478"
+								},
+								{
+									"key": "iconId",
+									"value": "6853def829959a4d0ab252cb",
+									"type": "text",
+									"uuid": "be4f0c06-c42c-40c3-a85f-4b7d6bf9d8de"
+								},
+								{
+									"key": "shared",
+									"value": "true",
+									"type": "text",
+									"uuid": "322350f6-f3a9-4eef-8cc8-306f247190fc"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/categories",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get category",
+					"id": "19779598-03f66a9b-2120-4a78-a5e7-c68098d51f15",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/categories",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"id": "19779598-7d8bac70-cefc-4672-8507-7c459261d96f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/categories/9u9w84htgiuroiuglzrgoi",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"categories",
+								"9u9w84htgiuroiuglzrgoi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"id": "19779598-3531a66b-6cac-4b24-a737-0639319e6b05",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/categories/9u9w84htgiuroiuglzrgoi",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"categories",
+								"9u9w84htgiuroiuglzrgoi"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "19779598-5fbb8c1f-a6d9-4ef7-9b9e-392181b6a19d"
+		},
+		{
+			"name": "transaction",
+			"item": [
+				{
+					"name": "create",
+					"id": "19779598-860e08a9-ec72-4abb-955b-76841ec35b00",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "datetime",
+									"value": "Sat Jun 21 2025 14:47:04 GMT+0530 (India Standard Time)",
+									"type": "text",
+									"uuid": "42df9c55-6943-424f-b8d7-06e553b25246"
+								},
+								{
+									"key": "type",
+									"value": "expense",
+									"type": "text",
+									"uuid": "36c76607-e8f2-41cf-8b93-5f04a88a7b8b"
+								},
+								{
+									"key": "categoryId",
+									"value": "68553d5a51c81c469910bf82",
+									"type": "text",
+									"uuid": "dc218b01-5f5c-4cc8-9c52-6c94974a652d"
+								},
+								{
+									"key": "accountId",
+									"value": "685417d5020bfa5a05651284",
+									"type": "text",
+									"uuid": "d0480f3d-d8a8-4fb1-963a-ef202fd0a2ab"
+								},
+								{
+									"key": "amount",
+									"value": "500",
+									"type": "text",
+									"uuid": "6b4f9e08-9e49-461f-9663-e1693cef75b3"
+								},
+								{
+									"key": "title",
+									"value": "demo",
+									"type": "text",
+									"uuid": "49eb2b11-e107-4e0e-8cab-21bd7be95727"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/transactions",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"id": "19779598-ddbb5d39-6bc6-40ae-bdbe-f41a9b014724",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/transactions?accountId=68541842020bfa5a05651292",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "accountId",
+									"value": "68541842020bfa5a05651292",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get transaction by id",
+					"id": "19779598-28ec92c9-2843-4e0b-ad80-84d108f751ef",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/transactions/6857bab07d14e24e2478594f",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"transactions",
+								"6857bab07d14e24e2478594f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete transaction",
+					"id": "19779598-bc25ea02-c73e-4049-ad3f-e43ea2819efa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/transactions/6857bab07d14e24e2478594f",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"transactions",
+								"6857bab07d14e24e2478594f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"id": "19779598-c169b904-6732-438e-be12-c07e08ffe17b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/transactions/6857bab07d14e24e2478594f",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"transactions",
+								"6857bab07d14e24e2478594f"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "19779598-14aa0388-3e63-4ec0-a4b2-1cb0b3daf99c"
+		},
+		{
+			"name": "dashboard",
+			"item": [
+				{
+					"name": "dashboard account",
+					"id": "19779598-b5bffabe-fd88-46a6-ab40-cf680566240a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/dashboard/account",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"dashboard",
+								"account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dashboard members",
+					"id": "19779598-09f9edea-f57a-4c32-9868-a4e97fdfe0cf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/dashboard/members?from=2025-06-01T00:00:00.000Z&to=2025-06-30T00:00:00.000Z",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"dashboard",
+								"members"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2025-06-01T00:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "to",
+									"value": "2025-06-30T00:00:00.000Z",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dashboard income-expense",
+					"id": "19779598-3364401b-228b-4bc6-82f4-4fd18c46e0b4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/dashboard/monthly-income-expense",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"dashboard",
+								"monthly-income-expense"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dashboard category-breakdown",
+					"id": "19779598-67304767-5b42-41b6-bdb5-1a0bf18e6ce3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/dashboard/category-breakdown?from=2025-06-01T00:00:00.000Z&to=2025-06-30T00:00:00.000Z",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"dashboard",
+								"category-breakdown"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2025-06-01T00:00:00.000Z"
+								},
+								{
+									"key": "to",
+									"value": "2025-06-30T00:00:00.000Z"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dashboard transaction",
+					"id": "19779598-c1c8b274-9fe7-4663-9514-e7551d20289c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/transactions",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "19779598-96571f03-c50c-4981-af24-1e7805ffce4b"
+		}
+	]
+}
