@@ -5,6 +5,7 @@ import {
   AccountPage,
   CategoryPage,
   DashboardPage,
+  ForgotPassword,
   HomePage,
   InviteAccept,
   LoginPage,
@@ -12,6 +13,7 @@ import {
   MembersPage,
   NotFoundPage,
   RegisterPage,
+  ResetPassword,
   TransactionDetailedPage,
   TransactionPage,
 } from '@/pages';
@@ -23,6 +25,8 @@ function App() {
         <Route index element={<HomePage />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="reset-password/:token" element={<ResetPassword />} />
       </Route>
 
       <Route

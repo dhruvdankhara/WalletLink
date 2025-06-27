@@ -11,3 +11,5 @@ export { default as TransactionPage } from '@/pages/TransactionPage';
 export { default as TransactionDetailedPage } from '@/pages/TransactionDetailedPage';
 export { default as MembersOverviewPage } from '@/pages/MembersOverviewPage';
 export { default as NotFoundPage } from '@/pages/NotFoundPage';
+export { default as ForgotPassword } from '@/pages/ForgotPassword';
+export { default as ResetPassword } from '@/pages/ResetPassword';

@@ -30,3 +30,20 @@ export const logout = async (): Promise<ApiResponse<null>> => {
   const response = await axios.post('/users/logout');
   return response.data;
 };
+
+export const forgotPassword = async (data: {
+  email: string;
+}): Promise<ApiResponse<null>> => {
+  const response = await axios.post('/users/forgot-password', data);
+  return response.data;
+};
+
+export const resetPassword = async (
+  token: string,
+  password: string
+): Promise<ApiResponse<null>> => {
+  const response = await axios.post(`/users/reset-password/${token}`, {
+    password,
+  });
+  return response.data;
+};

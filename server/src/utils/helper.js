@@ -6,6 +6,14 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const REDIRECT_URI = "https://developers.google.com/oauthplayground";
+const REFRESH_TOKEN = process.env.GOOGLE_REFRESH_TOKEN;
+const USER_EMAIL = process.env.GMAIL_USER_EMAIL;
+
+const OAuth2 = google.auth.OAuth2;
+
 export const removeMulterImageFilesOnError = (req) => {
   if (req.file) {
     fs.unlink(req.file.path, (err) => {
@@ -27,14 +35,6 @@ export const generateToken = (payload) => {
 export const decodeToken = (token) => {
   return jwt.verify(token, process.env.JWT_SECRET);
 };
-
-const OAuth2 = google.auth.OAuth2;
-
-const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-const REDIRECT_URI = "https://developers.google.com/oauthplayground";
-const REFRESH_TOKEN = process.env.GOOGLE_REFRESH_TOKEN;
-const USER_EMAIL = process.env.GMAIL_USER_EMAIL;
 
 const createTransporter = async () => {
   const oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
