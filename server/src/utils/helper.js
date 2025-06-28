@@ -13,6 +13,10 @@ dotenv.config();
 // const REFRESH_TOKEN = process.env.GOOGLE_REFRESH_TOKEN;
 // const USER_EMAIL = process.env.GMAIL_USER_EMAIL;
 
+const resendApiKey = process.env.RESEND_API_KEY;
+
+const resend = new Resend(resendApiKey);
+
 // const OAuth2 = google.auth.OAuth2;
 
 export const removeMulterImageFilesOnError = (req) => {
@@ -79,8 +83,6 @@ export const sendMail = async (email, subject, message) => {
     //   subject,
     //   html: message,
     // });
-
-    const resend = new Resend(process.env.RESEND_API_KEY);
 
     resend.emails.send({
       from: "onboarding@resend.dev",
