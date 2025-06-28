@@ -170,7 +170,7 @@ export const forgotPassword = asyncHandler(async (req, res) => {
       <p>You've request to forgot your account password so click below link to forgot your password.</p>
       <p>click below button and reset your password</p>
       <div style="text-align: center; margin: 30px 0;">
-        <a href="${resetPasswordUrl}" style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">Join Family</a>
+        <a href="${resetPasswordUrl}" style="background-color: #2563eb; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">reset password</a>
       </div>
       <p>If the button doesn't work, you can copy and paste this link into your browser:</p>
       <p style="word-break: break-all; color: #6b7280;">${resetPasswordUrl}</p>

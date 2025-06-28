@@ -1,18 +1,19 @@
 import fs from "fs";
 import jwt from "jsonwebtoken";
-import nodemailer from "nodemailer";
-import { google } from "googleapis";
+// import nodemailer from "nodemailer";
+// import { google } from "googleapis";
 import dotenv from "dotenv";
+import { Resend } from "resend";
 
 dotenv.config();
 
-const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-const REDIRECT_URI = "https://developers.google.com/oauthplayground";
-const REFRESH_TOKEN = process.env.GOOGLE_REFRESH_TOKEN;
-const USER_EMAIL = process.env.GMAIL_USER_EMAIL;
+// const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+// const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+// const REDIRECT_URI = "https://developers.google.com/oauthplayground";
+// const REFRESH_TOKEN = process.env.GOOGLE_REFRESH_TOKEN;
+// const USER_EMAIL = process.env.GMAIL_USER_EMAIL;
 
-const OAuth2 = google.auth.OAuth2;
+// const OAuth2 = google.auth.OAuth2;
 
 export const removeMulterImageFilesOnError = (req) => {
   if (req.file) {
@@ -36,48 +37,58 @@ export const decodeToken = (token) => {
   return jwt.verify(token, process.env.JWT_SECRET);
 };
 
-const createTransporter = async () => {
-  const oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+// const createTransporter = async () => {
+//   const oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
-  oauth2Client.setCredentials({
-    refresh_token: REFRESH_TOKEN,
-  });
+//   oauth2Client.setCredentials({
+//     refresh_token: REFRESH_TOKEN,
+//   });
 
-  const accessToken = await new Promise((resolve, reject) => {
-    oauth2Client.getAccessToken((err, token) => {
-      if (err) {
-        console.error("Failed to retrieve access token:", err);
-        reject("Failed to create access token.");
-      }
-      resolve(token);
-    });
-  });
+//   const accessToken = await new Promise((resolve, reject) => {
+//     oauth2Client.getAccessToken((err, token) => {
+//       if (err) {
+//         console.error("Failed to retrieve access token:", err);
+//         reject("Failed to create access token.");
+//       }
+//       resolve(token);
+//     });
+//   });
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      type: "OAuth2",
-      user: USER_EMAIL,
-      clientId: CLIENT_ID,
-      clientSecret: CLIENT_SECRET,
-      refreshToken: REFRESH_TOKEN,
-      accessToken: accessToken,
-    },
-  });
+//   const transporter = nodemailer.createTransport({
+//     service: "gmail",
+//     auth: {
+//       type: "OAuth2",
+//       user: USER_EMAIL,
+//       clientId: CLIENT_ID,
+//       clientSecret: CLIENT_SECRET,
+//       refreshToken: REFRESH_TOKEN,
+//       accessToken: accessToken,
+//     },
+//   });
 
-  return transporter;
-};
+//   return transporter;
+// };
 
 export const sendMail = async (email, subject, message) => {
   try {
-    const transporter = await createTransporter();
+    // const transporter = await createTransporter();
 
-    await transporter.sendMail({
-      from: USER_EMAIL,
-      to: email,
-      subject,
-      html: message,
+    // await transporter.sendMail({
+    //   from: USER_EMAIL,
+    //   to: email,
+    //   subject,
+    //   html: message,
+    // });
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: `${email}`,
+      subject: `${subject}`,
+      html: `${message}`,
     });
+
     console.log("Email sent successfully!");
   } catch (error) {
     console.error("Error sending email:", error);
