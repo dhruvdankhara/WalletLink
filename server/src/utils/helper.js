@@ -1,9 +1,9 @@
 import fs from "fs";
 import jwt from "jsonwebtoken";
-// import nodemailer from "nodemailer";
+import nodemailer from "nodemailer";
 // import { google } from "googleapis";
 import dotenv from "dotenv";
-import { Resend } from "resend";
+// import { Resend } from "resend";
 
 dotenv.config();
 
@@ -13,7 +13,10 @@ dotenv.config();
 // const REFRESH_TOKEN = process.env.GOOGLE_REFRESH_TOKEN;
 // const USER_EMAIL = process.env.GMAIL_USER_EMAIL;
 
-const resendApiKey = process.env.RESEND_API_KEY;
+// const resendApiKey = process.env.RESEND_API_KEY;
+
+const email_user = process.env.EMAIL_USER;
+const email_pass = process.env.EMAIL_PASS;
 
 const resend = new Resend(resendApiKey);
 
@@ -84,11 +87,28 @@ export const sendMail = async (email, subject, message) => {
     //   html: message,
     // });
 
-    resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: `${email}`,
-      subject: `${subject}`,
-      html: `${message}`,
+    // await resend.emails.send({
+    //   from: "onboarding@resend.dev",
+    //   to: `${email}`,
+    //   subject: `${subject}`,
+    //   html: `${message}`,
+    // });
+
+    const transporter = nodemailer.createTransport({
+      host: "smtp-relay.brevo.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: email_user,
+        pass: email_pass,
+      },
+    });
+
+    await transporter.sendMail({
+      from: "dhruv dankhara <dhruvdankhara02@gmail.com>",
+      to: email,
+      subject,
+      html: message,
     });
 
     console.log("Email sent successfully!");
