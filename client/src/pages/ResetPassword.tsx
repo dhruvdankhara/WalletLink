@@ -35,6 +35,8 @@ const ResetPassword = () => {
       await AuthAPI.resetPassword(token!, data.password);
 
       toast.success('Password reset successfully!');
+
+      window.location.href = '/login';
     } catch (error: unknown) {
       console.error('Reset password error:', error);
       const errorMessage =
