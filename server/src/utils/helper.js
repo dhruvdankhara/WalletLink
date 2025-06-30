@@ -18,7 +18,7 @@ dotenv.config();
 const email_user = process.env.EMAIL_USER;
 const email_pass = process.env.EMAIL_PASS;
 
-const resend = new Resend(resendApiKey);
+// const resend = new Resend(resendApiKey);
 
 // const OAuth2 = google.auth.OAuth2;
 
