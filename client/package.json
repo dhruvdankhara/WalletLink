@@ -1,7 +1,18 @@
 {
-  "name": "client",
-  "private": true,
-  "version": "0.0.0",
+  "name": "walletlink-client",
+  "description": "wallet link backend",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhruvdankhara/WalletLink.git#main"
+  },
+  "author": "dhruvdankhara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dhruvdankhara/WalletLink/issues"
+  },
+  "homepage": "https://github.com/dhruvdankhara/WalletLink/tree/main#readme",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

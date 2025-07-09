@@ -1,7 +1,15 @@
 {
-  "name": "server",
-  "version": "1.0.0",
+  "name": "walletlink-server",
+  "version": "1.0.1",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhruvdankhara/WalletLink.git#main"
+  },
+  "bugs": {
+    "url": "https://github.com/dhruvdankhara/WalletLink/issues"
+  },
+  "homepage": "https://github.com/dhruvdankhara/WalletLink/tree/main#readme",
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
@@ -10,9 +18,9 @@
     "seed:colors": "node src/seeds/colors.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "dhruvdankhara",
   "license": "ISC",
-  "description": "",
+  "description": "wallet link server",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.7.0",
