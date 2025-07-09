@@ -333,6 +333,42 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "forgot password",
+					"id": "19779598-1ac0499f-908c-4160-b7e9-c69d8495cd2c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "dhruvdankhara09@gmail.com",
+									"type": "text",
+									"uuid": "63e68052-448d-4035-acc4-14d9a10173c3"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/users/forgot-password",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"users",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"id": "19779598-00beb6d0-0e7f-4cc4-875d-6c895d7ffaa3"
